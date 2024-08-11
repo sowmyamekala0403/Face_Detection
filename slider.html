@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset ="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ccc;
+      width: 1000px;
+    }
+    
+    .slider{
+      width: 800px;
+      height: 500px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .slides{
+      width: 1100%;
+      height: 500px;
+      display: flex;
+    }
+    
+    .slides input{
+      display: none;
+    }
+    
+    .slide{
+      width: 9.09%;
+      transition: 2.5s;
+      transition: ease-in-out;
+    }
+    
+    .slide img{
+      width: 800px;
+      height: 500px;
+    }
+    
+    .navigation-mannual, .navigation-auto{
+      position: absolute;
+      width: 700px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .mannual-btn, .navigation-auto div{
+      border: 2px solid #ccc;
+      padding: 3px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: 1s;
+    }
+    
+    .mannual-btn:not(:last-child), .navigation-auto div:not(:last-child){
+      margin-right: 40px;
+    }
+    
+    .mannual-btn:hover, .navigation-auto div:hover{
+      background-color: #ffffff;
+    }
+    
+    #radio1:checked ~ .first{
+      margin-left: 0;
+    }
+    
+    #radio2:checked ~ .first{
+      margin-left: -9.09%;
+    }
+    
+    #radio3:checked ~ .first{
+      margin-left: -18.18%;
+    }
+    
+    #radio4:checked ~ .first{
+      margin-left: -27.27%;
+    }
+    
+    #radio5:checked ~ .first{
+      margin-left: -36.36%;
+    }
+    
+    #radio6:checked ~ .first{
+      margin-left: -45.45%;
+    }
+    
+    #radio7:checked ~ .first{
+      margin-left: -54.54%;
+    }
+    
+    #radio8:checked ~ .first{
+      margin-left: -63.63%;
+    }
+    
+    #radio9:checked ~ .first{
+      margin-left: -72.72%;
+    }
+    
+    #radio10:checked ~ .first{
+      margin-left: -81.81%;
+    }
+    
+    #radio11:checked ~ .first{
+      margin-left: -90.90%;
+    }
+    
+    #radio1:checked ~.navigation-auto .auto-btn-1,
+    #radio2:checked ~.navigation-auto .auto-btn-2,
+    #radio3:checked ~.navigation-auto .auto-btn-3,
+    #radio4:checked ~.navigation-auto .auto-btn-4,
+    #radio5:checked ~.navigation-auto .auto-btn-5,
+    #radio6:checked ~.navigation-auto .auto-btn-6,
+    #radio7:checked ~.navigation-auto .auto-btn-7,
+    #radio8:checked ~.navigation-auto .auto-btn-8,
+    #radio9:checked ~.navigation-auto .auto-btn-9,
+    #radio10:checked ~.navigation-auto .auto-btn-10,
+    #radio11:checked ~.navigation-auto .auto-btn-11{
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Image Slider Start -->
+  <div class="slider">
+    <div class="slides">
+      <!-- Radio Button Start  -->
+      <input type="radio" name="radio-btn" id="radio1">
+      <input type="radio" name="radio-btn" id="radio2">
+      <input type="radio" name="radio-btn" id="radio3">
+      <input type="radio" name="radio-btn" id="radio4">
+      <input type="radio" name="radio-btn" id="radio5">
+      <input type="radio" name="radio-btn" id="radio6">
+      <input type="radio" name="radio-btn" id="radio7">
+      <input type="radio" name="radio-btn" id="radio8">
+      <input type="radio" name="radio-btn" id="radio9">
+      <input type="radio" name="radio-btn" id="radio10">
+      <input type="radio" name="radio-btn" id="radio11">
+      <!-- Radio Button Close  -->
+
+      <!-- Slide Image Start -->
+      <div class="slide first">
+        <img src="Images/4.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/2.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/3.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/1.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/5.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/6.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/7.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/8.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/10.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/11.png" alt="">
+      </div>
+      <div class="slide">
+        <img src="Images/13.png" alt="">
+      </div>
+      <!-- Slide Image Close -->
+
+      <!-- Automatic Navigation Start -->
+      <div class="navigation-auto">
+        <div class="auto-btn-1"></div>
+        <div class="auto-btn-2"></div>
+        <div class="auto-btn-3"></div>
+        <div class="auto-btn-4"></div>
+        <div class="auto-btn-5"></div>
+        <div class="auto-btn-6"></div>
+        <div class="auto-btn-7"></div>
+        <div class="auto-btn-8"></div>
+        <div class="auto-btn-9"></div>
+        <div class="auto-btn-10"></div>
+        <div class="auto-btn-11"></div>
+      </div>
+      <!-- Automatic Navigation Close -->
+    </div>
+	
+      <!-- Mannual Navigation Start -->
+      <div class="navigation-mannual">
+        <label for="radio1" class="mannual-btn"></label>
+        <label for="radio2" class="mannual-btn"></label>
+        <label for="radio3" class="mannual-btn"></label>
+        <label for="radio4" class="mannual-btn"></label>
+        <label for="radio5" class="mannual-btn"></label>
+        <label for="radio6" class="mannual-btn"></label>
+        <label for="radio7" class="mannual-btn"></label>
+        <label for="radio8" class="mannual-btn"></label>
+        <label for="radio9" class="mannual-btn"></label>
+        <label for="radio10" class="mannual-btn"></label>
+        <label for="radio11" class="mannual-btn"></label>
+      </div>
+      <!-- Mannual Navigation Close -->
+  </div>
+  <!-- Image Slider Close -->
+  <script>
+    var counter = 1;
+    setInterval(function()  {
+      document.getElementById('radio'+ counter).checked = true;
+      counter++; 
+
+      if(counter>11){
+        counter=1
+      }
+
+    }, 2000);
+  </script>
+</body>
+</html>

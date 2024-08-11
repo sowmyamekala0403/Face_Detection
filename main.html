@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visage Vault</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="icon" href="Images/logoASL.jpeg">
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+    
+        header {
+            background-color: #7495a8;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        header img {
+            max-height: 150px;
+            background-color: #ffffff;
+            padding: 3px;
+            border-radius: 5px;
+            margin-left: 245px;
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 0.2;
+            margin-right: 225px;
+        }
+        img.background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 79%;
+            height: 95%;
+            object-fit: auto;
+            z-index: -1;
+        }
+        .title {
+            font-size: 24px;
+            margin: 0;
+            margin-right: 300px;
+        }
+        .container {
+    max-width: calc(50% - 20px);
+    margin: 20px;
+    padding: 0 20px;
+    width: fit-content;
+    text-align: center;
+    margin-top: 30px;
+    margin-right: 200px;
+    font-size: medium;
+    float: right;
+    font-family: sans-serif;
+}
+
+.image-container {
+    max-width: calc(50% - 20px);
+    margin: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 1200px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    margin-top: 45px;
+    float: left;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 800px;
+    height: auto;
+    object-fit: contain;
+}
+        .option {
+            position: relative;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(40, 119, 180, 0.8);
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.7s ease;
+        }
+        .option:hover {
+            background-color: rgba(53, 96, 147, 0.8);
+            transform: translateY(-5px);
+        }
+        .option h2 {
+            margin-top: 0;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .btn-container {
+            margin-top: 40px;
+            display: none;
+            transition: all 1s ease;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;   
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.submit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button.reset {
+            background-color: #fa7000;
+            color: white;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            display: none;
+        }
+        .progress-bar-inner {
+            height: 100%;
+            background-color: #19881c;
+            transition: width 0.3s ease;
+        }
+        .video-names {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .uploaded-file-name {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .toggle-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+        }
+        .toggle-buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            margin-left: 10px;
+            color: #000;
+        }
+        .slide {
+            flex: 0 0 auto;
+            width: 100%;
+            transition: transform 1s ease;
+        }
+        h1{
+            font-size: 34px;
+            font-family: 'Times New Roman';
+            font-weight: 700;
+        }
+        h2,p{
+            font-family: Georgia;
+            font-size: 18px;
+            font-weight: 800px;
+        
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <img src="Images/drdo-logo-wob.png" alt="DRDO Logo">
+        <div class="title-container">
+            <img src="Images/logoASL.jpeg" alt="Logo ASL">
+            <img src="Images/logoAdd.jpeg" alt="Logo Add">
+        </div>
+        <div class="toggle-buttons">
+            <button id="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+            <button id="light-mode-toggle" onclick="toggleLightMode()" style="display:none;">☀️</button>
+        </div>
+    </header>
+    <h1 style="text-align: center;">Visage Vault - The Facial Recognition System</h1>
+    <div class="container">
+        <div class="option" onclick="showSingleUpload('video')">
+            <h2>Upload Video</h2>
+            <p>Upload a single video for facial recognition</p>
+            <input type="file" accept="video/*">
+            <div class="progress-bar">
+                <div class="progress-bar-inner" style="width: 0;"></div>
+            </div>
+        </div>
+        <div class="option" onclick="showBulkUpload('video')">
+            <h2>Upload Folder</h2>
+            <p>Upload multiple videos for facial recognition</p>
+            <input type="file" directory accept="video/*" multiple>
+            <div class="progress-bar">
+                <div class="progress-bar-inner" style="width: 0;"></div>
+            </div>
+        </div>
+        <div class="option" onclick="showSingleImageUpload('image')">
+            <h2>Upload Single Image</h2>
+            <p>Upload a single image for facial recognition</p>
+            <input type="file" accept="image/*">
+            <div class="progress-bar">
+                <div class="progress-bar-inner" style="width: 0;"></div>
+            </div>
+        </div>
+        <div class="btn-container" style="display:none;">
+            <button class="submit" onclick="submitForm()">Recognize</button>
+            <button class="reset" onclick="resetForm()">Reset</button>
+        </div>
+        <div class="uploaded-file-name"></div> <!-- Display uploaded file name -->
+    </div>
+
+    <div class="container">
+        <iframe src="slider.html" style="width: 1000px; height: 600px; border: unset;"></iframe>
+    </div>
+
+    <script>
+        let transitionInProgress = false;
+
+        function showProgress(progress, progressBar) {
+            const progressBarInner = progressBar.querySelector('.progress-bar-inner');
+            progressBar.style.display = 'block';
+            progressBarInner.style.width = `${progress}%`;
+        }
+
+        function toggleDarkMode() {
+            document.body.style.backgroundColor = '#0b2d47cc';
+            document.querySelectorAll('h1, h2, p').forEach(element => {
+                element.style.color = '#fff';
+            });
+            document.getElementById('dark-mode-toggle').style.display = 'none';
+            document.getElementById('light-mode-toggle').style.display = 'inline';
+        }
+
+        function toggleLightMode() {
+            document.body.style.backgroundColor = '#fff';
+            document.querySelectorAll('h1, h2, p').forEach(element => {
+                element.style.color = '#000';
+            });
+            document.getElementById('light-mode-toggle').style.display = 'none';
+            document.getElementById('dark-mode-toggle').style.display = 'inline';
+        }
+
+        function showSingleUpload(type) {
+            const singleUploadInput = document.querySelector(`.option:nth-child(1) input[type="file"][accept="${type}/*"]`);
+            const bulkUploadInput = document.querySelector(`.option:nth-child(2) input[type="file"][accept="${type}/*"]`);
+            if (bulkUploadInput.value !== "") {
+                alert("Data already uploaded !!!");
+                return;
+            }
+            singleUploadInput.click();
+        }
+
+        function showBulkUpload(type) {
+            const bulkUploadInput = document.querySelector(`.option:nth-child(2) input[type="file"][accept="${type}/*"]`);
+            const singleUploadInput = document.querySelector(`.option:nth-child(1) input[type="file"][accept="${type}/*"]`);
+            if (singleUploadInput.value !== "") {
+                alert("Data already uploaded !!!");
+                return;
+            }
+            bulkUploadInput.click();
+        }
+
+        function showSingleImageUpload(type) {
+            if (!transitionInProgress) {
+                transitionInProgress = true;
+                setTimeout(() => {
+                    const singleImageUploadInput = document.querySelector(`.option:nth-child(3) input[type="file"][accept="${type}/*"]`);
+                    singleImageUploadInput.click();
+                    transitionInProgress = false;
+                }, 100); 
+            }
+        }
+
+        function handleVideoUploadComplete() {
+            const singleVideoInput = document.querySelector('.option:nth-child(1) input[type="file"]');
+            const bulkVideoInput = document.querySelector('.option:nth-child(2) input[type="file"]');
+            let uploadedFileName = '';
+
+            if (singleVideoInput.files.length === 1) {
+                uploadedFileName = singleVideoInput.files[0].name;
+            } else if (bulkVideoInput.files.length === 1) {
+                uploadedFileName = bulkVideoInput.files[0].name;
+            }
+
+            if (uploadedFileName !== '') {
+                const uploadedFileNameContainer = document.querySelector('.uploaded-file-name');
+                uploadedFileNameContainer.textContent = `Uploaded File: ${uploadedFileName}`;
+
+                setTimeout(() => {
+                    document.querySelector('.btn-container').style.display = 'block';
+                    document.querySelector('.option:nth-child(3)').style.display = 'block';
+                }, 2000);
+            }
+        }
+
+        function handleUploadComplete() {
+    const singleVideoInput = document.querySelector('.option:nth-child(1) input[type="file"]');
+    const bulkVideoInput = document.querySelector('.option:nth-child(2) input[type="file"]');
+    const singleImageInput = document.querySelector('.option:nth-child(3) input[type="file"]');
+    
+    let uploadedFileName = '';
+
+    if (singleVideoInput.files.length === 1) {
+        uploadedFileName = singleVideoInput.files[0].name;
+        handleVideoUploadComplete();
+    } else if (bulkVideoInput.files.length === 1) {
+        uploadedFileName = bulkVideoInput.files[0].name;
+        handleVideoUploadComplete();
+    } else if (singleImageInput.files.length === 1) {
+        uploadedFileName = singleImageInput.files[0].name;
+        handleImageUploadComplete();
+    }
+
+    if (uploadedFileName !== '') {
+        const uploadedFileNameContainer = document.querySelector('.uploaded-file-name');
+        uploadedFileNameContainer.textContent = `Uploaded File: ${uploadedFileName}`;
+        document.querySelector('.btn-container').style.display = 'block';
+    } else {
+        document.querySelector('.btn-container').style.display = 'none';
+        alert("Please upload only one file at a time.");
+        singleVideoInput.value = "";
+        bulkVideoInput.value = "";
+        singleImageInput.value = "";
+    }
+}
+
+        function submitForm() {
+    const singleImageInput = document.querySelector('.option:nth-child(3) input[type="file"]');
+    if (singleImageInput.files.length === 1) {
+        window.location.href = "Analysis.html";
+    } else {
+        alert("Please select an image to proceed.");
+    }
+}
+
+
+        function resetForm() {
+            location.reload();
+        }
+
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                handleUploadComplete();
+            });
+        });
+
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const progressBar = this.parentNode.querySelector('.progress-bar');
+                const progressBarInner = progressBar.querySelector('.progress-bar-inner');
+
+                const files = this.files;
+                const totalSize = Array.from(files).reduce((acc, file) => acc + file.size, 0);
+                let uploadedSize = 0;
+
+                Array.from(files).forEach(file => {
+                    const reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        uploadedSize += event.total;
+                        const progress = (uploadedSize / totalSize) * 100;
+                        showProgress(progress, progressBar);
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+            });
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlides();
+        }
+
+        function updateSlides() {
+            const offset = -currentSlide * 100;
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.transform = `translateX(${offset}%)`;
+            }
+        }
+        setInterval(nextSlide, 3000);
+    </script>
+</body>
+</html>
